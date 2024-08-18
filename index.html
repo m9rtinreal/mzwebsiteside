@@ -4,12 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Realitní Makléř Pardubického Kraje</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        .slide {
+            padding: 50px 20px;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.8s ease;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            max-width: 1200px;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .left, .right {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .profile-pic {
+            max-width: 100%;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        h1, h2 {
+            color: #444;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            font-size: 1.2em;
+        }
+
+        .slogan {
+            font-size: 1.5em;
+            color: #007BFF;
+            font-style: italic;
+        }
+
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .service-item {
+            width: calc(50% - 20px);
+            text-align: center;
+        }
+
+        .service-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        #slide1 {
+            background-color: #f9f9f9;
+        }
+
+        #slide2 {
+            background-color: #ffffff;
+        }
+
+        #slide3 {
+            background-color: #f3f3f3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide:not(.visible) {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+    </style>
 </head>
 <body>
 
     <!-- Slide 1: About Me -->
-    <section id="slide1" class="slide">
+    <section id="slide1" class="slide visible">
         <div class="container">
             <div class="left">
                 <img src="images/profile.jpg" alt="Profilová Fotografie" class="profile-pic">
@@ -53,6 +166,25 @@
         </div>
     </section>
 
-    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Add animations on scroll for the second and third slides
+            const slides = document.querySelectorAll('.slide');
+            
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            slides.forEach(slide => {
+                observer.observe(slide);
+            });
+        });
+    </script>
 </body>
 </html>
