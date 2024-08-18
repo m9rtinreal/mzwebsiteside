@@ -1,72 +1,61 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    color: #333;
-}
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realitní Makléř - Pomůžeme Vám Koupit Dům</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-header {
-    background: #3a3a3a;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
+    <!-- Header Section -->
+    <header>
+        <h1>Realitní Makléř</h1>
+        <p>Vaše cesta k vysněnému domu začíná zde</p>
+    </header>
 
-h1 {
-    margin: 0;
-    font-size: 2.5em;
-}
+    <!-- Main Content -->
+    <section id="home-buying-process">
+        <h2>Proces Nákupu Domu</h2>
+        <div class="step">
+            <h3>1. Konzultace</h3>
+            <p>Prvním krokem je pochopit vaše potřeby a požadavky.</p>
+        </div>
+        <div class="step">
+            <h3>2. Hledání Nemovitostí</h3>
+            <p>Na základě vašich požadavků najdeme nejlepší nabídky.</p>
+        </div>
+        <div class="step">
+            <h3>3. Prohlídka Nemovitostí</h3>
+            <p>Provedeme vás vybranými nemovitostmi a pomůžeme s rozhodováním.</p>
+        </div>
+        <div class="step">
+            <h3>4. Smlouvy a Finanční Poradenství</h3>
+            <p>Pomůžeme vám s veškerou administrativou a finančními otázkami.</p>
+        </div>
+        <div class="step">
+            <h3>5. Uzavření Obchodu</h3>
+            <p>Konečný krok: podepsání smluv a převod nemovitosti.</p>
+        </div>
+    </section>
 
-p {
-    font-size: 1.2em;
-}
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Kontaktujte Nás</h2>
+        <form action="#">
+            <label for="name">Jméno:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Zpráva:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <button type="submit">Odeslat</button>
+        </form>
+    </section>
 
-#home-buying-process {
-    padding: 20px;
-    background-color: white;
-}
-
-.step {
-    margin: 20px 0;
-    padding: 15px;
-    background-color: #e8e8e8;
-    border-radius: 5px;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#contact {
-    background: #3a3a3a;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-label, input, textarea {
-    margin-bottom: 10px;
-    font-size: 1.2em;
-}
-
-button {
-    background-color: #5a5a5a;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 1.2em;
-}
-
-button:hover {
-    background-color: #7a7a7a;
-}
+    <script src="scripts.js"></script>
+</body>
+</html>
