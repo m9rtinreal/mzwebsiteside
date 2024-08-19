@@ -7,13 +7,14 @@ body {
 }
 
 .slide {
-    height: 100vh;
+    height: 100vh; /* Ensure each slide takes up the full viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
     box-sizing: border-box;
     transition: opacity 0.5s ease-in-out;
+    position: relative; /* Ensure slides stack properly */
 }
 
 .container {
@@ -64,56 +65,4 @@ p {
 }
 
 .gallery img {
-    width: 60%; /* 3x bigger */
-    margin: 10px;
-    transition: transform 0.3s ease;
-}
-
-.gallery img:hover {
-    transform: scale(1.1);
-}
-
-.walkthrough {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.step {
-    background-color: #e0e0e0;
-    color: #333;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 8px;
-    font-weight: bold;
-    text-align: center;
-    flex: 1;
-}
-
-.arrow {
-    font-size: 2rem;
-    color: #7f8c8d;
-}
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        text-align: left;
-    }
-
-    .left, .right {
-        width: 100%;
-    }
-
-    .gallery img {
-        width: 100%;
-    }
-
-    .walkthrough {
-        flex-direction: column;
-    }
-
-    .arrow {
-        display: none;
-    }
-}
+    width: 60%; /* 3
