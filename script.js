@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
         threshold: 0.1
     };
 
+    let lastScrollY = window.scrollY;
+    let isScrolling = false;
+
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -20,21 +23,33 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(slide);
     });
 
-    // Auto scroll after 3 down scrolls
-    let scrollCount = 0;
     window.addEventListener('scroll', () => {
-        scrollCount++;
-        if (scrollCount >= 3) {
-            let currentSlide = Math.round(window.scrollY / window.innerHeight);
-            let nextSlide = currentSlide + 1;
-            if (nextSlide < slides.length) {
-                window.scrollTo({
-                    top: nextSlide * window.innerHeight,
-                    behavior: 'smooth'
-                });
-                scrollCount = 0; // reset scroll count after auto-scroll
-            }
+        if (isScrolling) return;
+
+        let currentScrollY = window.scrollY;
+        let currentSlide = Math.round(currentScrollY / window.innerHeight);
+
+        if (currentScrollY > lastScrollY && currentSlide < slides.length - 1) {
+            // Scrolling down
+            isScrolling = true;
+            window.scrollTo({
+                top: (currentSlide + 1) * window.innerHeight,
+                behavior: 'smooth'
+            });
+        } else if (currentScrollY < lastScrollY && currentSlide > 0) {
+            // Scrolling up
+            isScrolling = true;
+            window.scrollTo({
+                top: (currentSlide - 1) * window.innerHeight,
+                behavior: 'smooth'
+            });
         }
+
+        lastScrollY = currentScrollY;
+
+        setTimeout(() => {
+            isScrolling = false;
+        }, 700); // Adjust the timeout to match the scroll animation duration
     });
 });
 
@@ -50,5 +65,4 @@ document.head.insertAdjacentHTML('beforeend', `
     opacity: 0;
     transform: translateY(50px);
 }
-</style>
-`);
+</style
