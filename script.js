@@ -19,6 +19,23 @@ document.addEventListener("DOMContentLoaded", function() {
     slides.forEach(slide => {
         observer.observe(slide);
     });
+
+    // Auto scroll after 3 down scrolls
+    let scrollCount = 0;
+    window.addEventListener('scroll', () => {
+        scrollCount++;
+        if (scrollCount >= 3) {
+            let currentSlide = Math.round(window.scrollY / window.innerHeight);
+            let nextSlide = currentSlide + 1;
+            if (nextSlide < slides.length) {
+                window.scrollTo({
+                    top: nextSlide * window.innerHeight,
+                    behavior: 'smooth'
+                });
+                scrollCount = 0; // reset scroll count after auto-scroll
+            }
+        }
+    });
 });
 
 // CSS for animation
