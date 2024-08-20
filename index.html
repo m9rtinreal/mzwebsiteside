@@ -8,53 +8,116 @@
 </head>
 <body>
 
-    <!-- First Slide -->
-    <section id="slide1" class="slide">
+    <!-- First Section -->
+    <section id="section1" class="section">
         <div class="container">
             <div class="left">
-                <img src="images/profile_photo.png" alt="Realitní Makléř" class="profile-pic">
+                <img src="images/profile_photo.png" alt="Martin Muzikář" class="profile-pic animate-fade-in">
             </div>
             <div class="right">
-                <h1>Realitní Makléř Pardubického Kraje</h1>
-                <p>Telefon: <a href="tel:+420602676527">+420602676527</a></p>
-                <p>Email: <a href="mailto:muzikarm@mmreality.cz">muzikarm@mmreality.cz</a></p>
-                <p class="slogan">Vaše cesta k vysněnému domu začíná zde.</p>
+                <div class="text-content">
+                    <h1 class="animate-slide-in">Martin Muzikář</h1>
+                    <h2 class="animate-slide-in">Realitní Makléř Pardubického Kraje</h2>
+                </div>
+                <div class="logos animate-slide-in">
+                    <img src="images/mm_reality_logo.png" alt="M&M Reality Logo" class="logo">
+                    <img src="images/award_logo.png" alt="Award Logo" class="logo">
+                </div>
             </div>
+        </div>
+        <div class="arrow-container">
+            <a href="#section2"><img src="images/down_arrow.png" alt="Scroll Down" class="down-arrow animate-fade-in"></a>
         </div>
     </section>
 
-    <!-- Second Slide -->
-    <section id="slide2" class="slide">
+    <!-- Second Section -->
+    <section id="section2" class="section">
         <div class="container">
             <div class="gallery">
-                <img src="images/real_estate_front_view.jpeg" alt="Real Estate Front View" class="animated">
-                <img src="images/real_estate_living_room.jpeg" alt="Living Room" class="animated">
-                <img src="images/real_estate_kitchen.jpg" alt="Kitchen" class="animated">
+                <img src="images/real_estate_front_view.jpeg" alt="Real Estate Front View" class="animate-slide-in">
+                <img src="images/real_estate_living_room.jpeg" alt="Living Room" class="animate-slide-in">
+                <img src="images/real_estate_kitchen.jpg" alt="Kitchen" class="animate-slide-in">
             </div>
+        </div>
+        <div class="arrow-container">
+            <a href="#section3"><img src="images/down_arrow.png" alt="Scroll Down" class="down-arrow animate-fade-in"></a>
         </div>
     </section>
 
-    <!-- Third Slide -->
-    <section id="slide3" class="slide">
+    <!-- Third Section -->
+    <section id="section3" class="section">
         <div class="container">
             <div class="walkthrough">
-                <div class="step">Konzultace</div>
-                <div class="arrow">➔</div>
-                <div class="step">Fotografování</div>
-                <div class="arrow">➔</div>
-                <div class="step">Marketing</div>
-                <div class="arrow">➔</div>
-                <div class="step">Vyjednávání</div>
-                <div class="arrow">➔</div>
-                <div class="step">Prodej</div>
-                <div class="arrow">➔</div>
-                <div class="step">Smlouva</div>
-                <div class="arrow">➔</div>
-                <div class="step">Předání Klíčů</div>
+                <div class="step animate-slide-in">Konzultace</div>
+                <div class="arrow animate-slide-in">➔</div>
+                <div class="step animate-slide-in">Fotografování</div>
+                <div class="arrow animate-slide-in">➔</div>
+                <div class="step animate-slide-in">Marketing</div>
+                <div class="arrow animate-slide-in">➔</div>
+                <div class="step animate-slide-in">Vyjednávání</div>
+                <div class="arrow animate-slide-in">➔</div>
+                <div class="step animate-slide-in">Prodej</div>
+                <div class="arrow animate-slide-in">➔</div>
+                <div class="step animate-slide-in">Smlouva</div>
+                <div class="arrow animate-slide-in">➔</div>
+                <div class="step animate-slide-in">Předání Klíčů</div>
             </div>
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script>
+        // Adjust smooth scroll duration
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                const duration = 1500; // Adjust the duration in milliseconds (1500ms = 1.5s)
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                const startPosition = window.pageYOffset;
+                const distance = targetPosition - startPosition;
+                let startTime = null;
+
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const run = ease(timeElapsed, startPosition, distance, duration);
+                    window.scrollTo(0, run);
+                    if (timeElapsed < duration) requestAnimationFrame(animation);
+                }
+
+                function ease(t, b, c, d) {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                }
+
+                requestAnimationFrame(animation);
+            });
+        });
+
+        // Fade-in and slide-in animations
+        document.addEventListener("DOMContentLoaded", function() {
+            const fadeInElements = document.querySelectorAll('.animate-fade-in');
+            const slideInElements = document.querySelectorAll('.animate-slide-in');
+
+            fadeInElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transition = 'opacity 1s ease-in-out';
+                setTimeout(() => el.style.opacity = 1, 200); // Delay of 200ms before fade-in
+            });
+
+            slideInElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateX(-100px)';
+                el.style.transition = 'opacity 1s ease-in-out, transform 1s ease-in-out';
+                setTimeout(() => {
+                    el.style.opacity = 1;
+                    el.style.transform = 'translateX(0)';
+                }, 200); // Delay of 200ms before slide-in
+            });
+        });
+    </script>
+
 </body>
 </html>
